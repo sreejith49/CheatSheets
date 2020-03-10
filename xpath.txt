@@ -1,0 +1,56 @@
+https://mvnrepository.com/artifact/org.testng/testng/7.1.0
+
+identify the table displayed with details using xpath
+
+Xpath axes:
+
+using //following::
+
+find the div just above the table we need and use the following key to extract the table list then using index get the table uniquely
+
+$x('//div[@class="im"]//following::table[1]')
+
+using //ancestor::
+
+This techinque we uses any unique column name to track the table. i.e, we uses column name HomePage which is a unique column then using ancestor keyworkd to fetch the table object
+
+$x('//th[text()="HomePage"]//ancestor::table')
+
+using //following-sibling::
+
+immediate sibling. 
+$x('//th[text()="HomePage"]//ancestor::table/tbody/tr/th[contains(text(),"Categories")]//following-sibling::*')
+
+using //child::
+
+fetch all the child tags inside td
+$x('//th[text()="HomePage"]//ancestor::table/tbody/tr/th[contains(text(),"Files")]//following-sibling::td//child::*')
+
+
+using //descendant:: difference b/w child and descendant is child retrieves only the child nodes/childrens but at the same time descendant fetches child as well as leaf nodes/grand childrens
+
+$x('//th[text()="HomePage"]//ancestor::table//descendant::*')
+
+
+using //preceding::
+
+Preceding fetches all the nodes above the current node including current node.
+$x('//th[text()="HomePage"]//ancestor::table/tbody/tr/th[contains(text(),"Files")]//following-sibling::td//preceding::*')
+
+
+misc
+$x('//th[text()="HomePage"]//ancestor::table//descendant::tr//child::td')
+
+column in 5th row. This example will depict how a table been identified using a column name which exists only once in the list of tables
+
+$x('//th[text()="HomePage"]//ancestor::table/tbody/tr[5]/td')
+
+
+
+
+ancestor
+ parent/following
+  self/following
+   child/following/following-sibling
+    child/following/descendant	
+  sibling/following
